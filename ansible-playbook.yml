@@ -1,0 +1,51 @@
+---
+- name: "build contanier with ansible"
+  hosts: localhost
+  tasks:
+
+  - name: running stop container 
+    command: docker stop ansible-container
+    ignore_errors: yes
+
+  - name :  remove container 
+    command : docker rm ansible-container
+    ignore_errors: yes
+
+  - name: remove ansible-image
+    command: docker rmi ansible-image
+    ignore_errors: yes
+
+  - name: build docker images from dockerfile
+    command: docker build -t ansible-image .
+
+  - name: create tag to image 
+    command: docker tag ansible-image rizkzaher/ansible:tagname
+
+  - name: push image to dockerhub
+    command: docker push rizkzaher/ansible:tagname
+    ignore_errors: yes
+
+  - name: run contanier from ansible-image
+    command : docker run -d --name ansible-container -p 8080:80 ansible-image
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
