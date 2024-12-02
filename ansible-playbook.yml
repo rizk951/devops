@@ -26,7 +26,7 @@
     ignore_errors: yes
 
   - name: run contanier from ansible-image
-    command : docker run -d --name ansible-container -p 8080:80 ansible-image
+    command : docker run -d --name ansible-container -p 8081:80 ansible-image
 
 
 
